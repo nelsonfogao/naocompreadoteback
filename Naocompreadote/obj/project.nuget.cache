@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "+VptFf+CFFW8uwg4L0Y1QPeC7NV0MZzn0POggy6z7Px8YuaIvHOfEkJVgt5yH9fT3JQJ5BQ15xDbsAT1JcfkIQ==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\05881368754\\source\\repos\\naocompreadote\\Naocompreadote\\Naocompreadote.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "Não é possível carregar o índice de serviço para a origem https://api.nuget.org/v3/index.json.",
+      "libraryId": "Swashbuckle.AspNetCore"
+    }
+  ]
+}
