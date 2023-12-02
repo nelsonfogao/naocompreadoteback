@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Application.Entities
 {
-    public abstract class Adotante : Account
+    public class Adotante
     {
-
+        [Key]
+        public Guid AdotanteId { get; set; }
+        public string Nome { get; set; }
+        public string Email { get; set; }
+        public string Endereco { get; set; }
         public string CPF { get; set; }
-        public List<string> Fotos { get; set; }
-        public List<Guid> PetsFavoritos { get; set; }
+        public virtual IList<FotosAdotantes> FotosAdotantes { get; set; }
+        public virtual IList<Adocoes> Adocoes { get; set; }
 
     }
 }
