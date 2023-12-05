@@ -2,15 +2,6 @@
 using Application.Entities;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.PortableExecutable;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
-using static System.Net.WebRequestMethods;
 
 namespace Application.Services
 {
