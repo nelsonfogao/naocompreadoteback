@@ -16,6 +16,7 @@ namespace Application.Entities
         public DateTime DataNascimento { get; set; }
         public bool EhDog { get; set; }
         public Guid DoadorId { get; set; }
+        public bool Disponivel { get; set; }
         public virtual IList<FotosPets> FotosPet { get; set; }
         public virtual IList<Caracteristicas> Caracteristicas { get; set; }
         [JsonIgnore]

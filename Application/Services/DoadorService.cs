@@ -33,6 +33,7 @@ namespace Application.Services
                     DataNascimento = y.DataNascimento,
                     EhDog = y.EhDog,
                     DoadorId = y.DoadorId,
+                    Disponivel = y.Disponivel,
                     FotosPet = y.FotosPet!= null ? y.FotosPet.Select(y => new FotosPetsDto()
                     {
                         IdFoto = y.IdFoto,
@@ -68,6 +69,7 @@ namespace Application.Services
                     DataNascimento = y.DataNascimento,
                     EhDog = y.EhDog,
                     DoadorId = y.DoadorId,
+                    Disponivel = y.Disponivel,
                     Caracteristicas = y.Caracteristicas != null ? y.Caracteristicas.Select(y => new CaracteristicasDto()
                     {
                         IdCaracteristica = y.IdCaracteristica,

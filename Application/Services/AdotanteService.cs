@@ -16,14 +16,19 @@ namespace Application.Services
     public class AdotanteService : IAdotanteService
     {
         private readonly IAdotanteRepository _adotanteRepository;
-        public AdotanteService(IAdotanteRepository adotanteRepository)
+        private readonly IAdocoesService _adocoesService;
+        public AdotanteService(IAdotanteRepository adotanteRepository, IAdocoesService adocoesService)
         {
             _adotanteRepository = adotanteRepository;
+            _adocoesService = adocoesService;
         }
 
         public async Task<IEnumerable<AdotanteDto>> GetAdotantesAsync()
         {
             var adotantes = await _adotanteRepository.GetAdotantesAsync();
+            var adocoes = await _adocoesService.GetAdocoesAsync();
+
+
             var adotantesDto = adotantes.Select(x => new AdotanteDto()
             {
                 AdotanteId = x.AdotanteId,
@@ -32,19 +37,20 @@ namespace Application.Services
                 Endereco = x.Endereco,
                 CPF = x.CPF,
                 FotosAdotantes = x.FotosAdotantes != null ?
-                x.FotosAdotantes.Select(y=> new FotosAdotantesDto()
+                x.FotosAdotantes.Select(y => new FotosAdotantesDto()
                 {
                     IdFoto = y.IdFoto,
-                    AdotanteId=y.AdotanteId,
+                    AdotanteId = y.AdotanteId,
                     Link = y.Link,
-                }).ToList(): new List<FotosAdotantesDto>(),
+                }).ToList() : new List<FotosAdotantesDto>(),
+                Adocoes = x.Adocoes != null ? adocoes.Where(x=> x.AdotanteId == x.AdotanteId).ToList(): new List<AdocoesDto>(),
             }).ToList();
             return adotantesDto;
         }
         public async Task<AdotanteDto> GetAdotanteByIdAsync(Guid id)
         {
             var adotante = await _adotanteRepository.GetAdotanteByIdAsync(id);
-
+            var adocoes = await _adocoesService.GetAdocoesAsync();
             return new AdotanteDto()
             {
                 AdotanteId = adotante.AdotanteId,
@@ -59,6 +65,7 @@ namespace Application.Services
                     AdotanteId = y.AdotanteId,
                     Link = y.Link,
                 }).ToList() : new List<FotosAdotantesDto>(),
+                Adocoes = adotante.Adocoes != null ? adocoes.Where(x => x.AdotanteId == x.AdotanteId).ToList() : new List<AdocoesDto>(),
 
             };
         }
@@ -81,6 +88,10 @@ namespace Application.Services
                 Endereco = adotante.Endereco,
                 CPF = adotante.CPF,
             };
+        }
+        public async Task CreateAdocoesAsync(CreateAdocaoDto adocao)
+        {
+            await _adocoesService.CreateAdocaoAsync(adocao);
         }
     }
 }

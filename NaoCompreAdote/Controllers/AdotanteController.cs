@@ -55,6 +55,19 @@ namespace TransactionsAPI.Controllers
 
             return Created("", result);
         }
+        /// <summary>
+        /// Cadastro de uma nova adocao
+        /// </summary>
+        /// <param name="adocao">dados para vincular</param>
+        /// <response code="201">Cadastrado com sucesso</response>  
+        [ProducesResponseType(201)]
+        [HttpPost("/adocao")]
+        public async Task<IActionResult> PostAdotanteAsync([FromBody] CreateAdocaoDto adocao)
+        {
+            await _adotanteService.CreateAdocoesAsync(adocao);
+
+            return Created("",Ok());
+        }
 
     }
 }

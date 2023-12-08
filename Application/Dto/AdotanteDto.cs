@@ -15,7 +15,7 @@ namespace Application.Dto
         public string Endereco { get; set; }
         public string CPF { get; set; }
         public  IList<FotosAdotantesDto> FotosAdotantes { get; set; }
-        public IList<PetDto> PetsFavoritos { get; set; }
+        public IList<AdocoesDto> Adocoes { get; set; }
 
 
     }

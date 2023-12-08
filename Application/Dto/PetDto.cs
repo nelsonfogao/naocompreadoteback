@@ -15,6 +15,7 @@ namespace Application.Dto
         public DateTime DataNascimento { get; set; }
         public bool EhDog { get; set; }
         public Guid DoadorId { get; set; }
+        public bool Disponivel { get; set; }
         public List<FotosPetsDto> FotosPet { get; set; }
         public List<CaracteristicasDto> Caracteristicas { get; set; }
 

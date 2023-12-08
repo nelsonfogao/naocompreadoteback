@@ -32,6 +32,7 @@ namespace Application.Services
                     DataNascimento = x.DataNascimento,
                     EhDog = x.EhDog,
                     DoadorId = x.DoadorId,
+                    Disponivel = x.Disponivel,
                     Caracteristicas = x.Caracteristicas != null ? x.Caracteristicas.Select(y => new CaracteristicasDto()
                     {
                         IdCaracteristica = y.IdCaracteristica,
@@ -57,6 +58,7 @@ namespace Application.Services
                     DataNascimento = pet.DataNascimento,
                     EhDog = pet.EhDog,
                     DoadorId = pet.DoadorId,
+                    Disponivel = pet.Disponivel,
                     Caracteristicas = pet.Caracteristicas != null ? pet.Caracteristicas.Select(y => new CaracteristicasDto()
                     {
                         IdCaracteristica = y.IdCaracteristica,
@@ -80,6 +82,7 @@ namespace Application.Services
                 DataNascimento = createPet.DataNascimento,
                 EhDog = createPet.EhDog,
                 DoadorId = doadorId,
+                Disponivel = true,
                 Caracteristicas = createPet.Caracteristicas != null ? createPet.Caracteristicas.Select(y => new Caracteristicas()
                 {
                     IdCaracteristica = y.IdCaracteristica,
@@ -100,6 +103,7 @@ namespace Application.Services
                 DataNascimento = pet.DataNascimento,
                 EhDog = pet.EhDog,
                 DoadorId = doadorId,
+                Disponivel = pet.Disponivel,
                 Caracteristicas =  pet.Caracteristicas != null ? pet.Caracteristicas.Select(y => new CaracteristicasDto()
                 {
                     IdCaracteristica = y.IdCaracteristica,
