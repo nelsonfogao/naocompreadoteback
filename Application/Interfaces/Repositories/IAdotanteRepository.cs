@@ -13,5 +13,6 @@ namespace Application.Interfaces.Repositories
         Task<IEnumerable<Adotante>> GetAdotantesAsync();
         Task<Adotante> GetAdotanteByIdAsync(Guid id);
         Task<Adotante> CreateAdotanteAsync(Adotante adotante);
+        Task<Adotante> GetAdotanteByEmailAsync(string email);
     }
 }

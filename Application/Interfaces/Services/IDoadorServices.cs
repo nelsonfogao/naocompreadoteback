@@ -13,6 +13,7 @@ namespace Application.Interfaces.Services
         Task<IEnumerable<DoadorDto>> GetDoadoresAsync();
         Task<DoadorDto> GetDoadorByIdAsync(Guid id);
         Task<DoadorDto> CreateDoadorAsync(CreateDoadorDto doador);
+        Task<DoadorDto> LoginDoadorAsync(string email, string senha);
 
     }
 }

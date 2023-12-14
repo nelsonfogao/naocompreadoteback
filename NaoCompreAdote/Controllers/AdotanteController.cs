@@ -1,5 +1,6 @@
 ﻿using Application.Dto;
 using Application.Interfaces.Services;
+using Application.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -67,6 +68,19 @@ namespace TransactionsAPI.Controllers
             await _adotanteService.CreateAdocoesAsync(adocao);
 
             return Created("",Ok());
+        }
+        /// <summary>
+        /// Login adotantes
+        /// </summary>
+        /// <returns code="200">adotante</returns>
+        /// <returns code="204">login invalido</returns>
+        [HttpGet("login")]
+        [ProducesResponseType(typeof(AdotanteDto), 200)]
+
+        [ProducesResponseType(204)]
+        public async Task<IActionResult> LoginAdotanteAsync(string email, string senha)
+        {
+            return Ok(await _adotanteService.LoginAdotanteAsync(email, senha));
         }
 
     }

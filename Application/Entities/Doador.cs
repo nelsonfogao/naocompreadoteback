@@ -13,6 +13,8 @@ namespace Application.Entities
         public Guid DoadorId { get; set; }
         public string Nome { get; set; }
         public string Email { get; set; }
+        public string Senha { get; set; }
+        public string Telefone { get; set; }
         public string Endereco { get; set; }
         public virtual IList<Pet> Pets { get; set; }
 

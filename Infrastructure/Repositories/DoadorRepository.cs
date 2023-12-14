@@ -29,6 +29,11 @@ namespace Infrastructure.Repositories
             var result = await _context.Doadores.FirstOrDefaultAsync(x => x.DoadorId == id);
             return result;
         }
+        public async Task<Doador> GetDoadorByEmailAsync(string email)
+        {
+            var result = await _context.Doadores.FirstOrDefaultAsync(x => x.Email == email);
+            return result;
+        }
 
         public async Task<Doador> CreateDoadorAsync(Doador doador)
         {

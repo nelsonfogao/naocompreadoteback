@@ -33,6 +33,20 @@ namespace TransactionsAPI.Controllers
 
 
         /// <summary>
+        /// Login doadores
+        /// </summary>
+        /// <returns code="200">doador</returns>
+        /// <returns code="204">login invalido</returns>
+        [HttpGet("login")]
+        [ProducesResponseType(typeof(DoadorDto), 200)]
+        [ProducesResponseType(204)]
+        public async Task<IActionResult> LoginDoadorAsync(string email, string senha)
+        {
+            return Ok(await _doadorService.LoginDoadorAsync(email, senha));
+        }
+
+
+        /// <summary>
         /// Consulta todas as contas
         /// </summary>
         /// <returns code="200">Todas as contas encontradas</returns>

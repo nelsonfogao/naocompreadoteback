@@ -14,5 +14,6 @@ namespace Application.Interfaces.Repositories
         Task<IEnumerable<Doador>> GetDoadoresAsync();
         Task<Doador> GetDoadorByIdAsync(Guid id);
         Task<Doador> CreateDoadorAsync(Doador doador);
+        Task<Doador> GetDoadorByEmailAsync(string email);
     }
 }

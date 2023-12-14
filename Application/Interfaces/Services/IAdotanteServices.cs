@@ -13,5 +13,6 @@ namespace Application.Interfaces.Services
         Task<AdotanteDto> GetAdotanteByIdAsync(Guid id);
         Task<AdotanteDto> CreateAdotanteAsync(CreateAdotanteDto adotante);
         Task CreateAdocoesAsync(CreateAdocaoDto adocao);
+        Task<AdotanteDto> LoginAdotanteAsync(string email, string senha);
     }
 }

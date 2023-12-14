@@ -19,6 +19,8 @@ namespace Infrastructure.Mapping
 
             builder.Property(x => x.Nome);
             builder.Property(x => x.Endereco);
+            builder.Property(x => x.Senha);
+            builder.Property(x => x.Telefone);
             builder.Property(x => x.Email);
             builder.Property(x => x.CPF);
             builder.HasMany<FotosAdotantes>(x => x.FotosAdotantes).WithOne(j=>j.Adotante).HasForeignKey(j=>j.IdFoto);

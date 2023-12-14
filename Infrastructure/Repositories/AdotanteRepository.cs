@@ -30,6 +30,12 @@ namespace Infrastructure.Repositories
             return result;
         }
 
+        public async Task<Adotante> GetAdotanteByEmailAsync(string email)
+        {
+            var result = await _context.Adotantes.FirstOrDefaultAsync(x => x.Email == email);
+            return result;
+        }
+
         public async Task<Adotante> CreateAdotanteAsync(Adotante adotante)
         {
             await _context.Adotantes.AddAsync(adotante);
