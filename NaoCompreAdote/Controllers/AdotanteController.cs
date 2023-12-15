@@ -74,13 +74,13 @@ namespace TransactionsAPI.Controllers
         /// </summary>
         /// <returns code="200">adotante</returns>
         /// <returns code="204">login invalido</returns>
-        [HttpGet("login")]
+        [HttpPost("login")]
         [ProducesResponseType(typeof(AdotanteDto), 200)]
 
         [ProducesResponseType(204)]
-        public async Task<IActionResult> LoginAdotanteAsync(string email, string senha)
+        public async Task<IActionResult> LoginAdotanteAsync([FromBody] LoginDto login)
         {
-            return Ok(await _adotanteService.LoginAdotanteAsync(email, senha));
+            return Ok(await _adotanteService.LoginAdotanteAsync(login.Email, login.Senha));
         }
 
     }

@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaoCompreAdote", "NaoCompreAdote\NaoCompreAdote.csproj", "{C5E179EF-67A0-4E2A-8180-7CB4EB195AB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NaoCompreAdote", "NaoCompreAdote\NaoCompreAdote.csproj", "{C5E179EF-67A0-4E2A-8180-7CB4EB195AB9}"
 	ProjectSection(ProjectDependencies) = postProject
 		{1CF0FF3D-679F-45F2-93C9-CEE30C66A078} = {1CF0FF3D-679F-45F2-93C9-CEE30C66A078}
 		{C97B6424-A14F-447B-9218-CB34D58B7C2E} = {C97B6424-A14F-447B-9218-CB34D58B7C2E}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{C97B6424-A14F-447B-9218-CB34D58B7C2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{C97B6424-A14F-447B-9218-CB34D58B7C2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{1CF0FF3D-679F-45F2-93C9-CEE30C66A078}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{1CF0FF3D-679F-45F2-93C9-CEE30C66A078}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C97B6424-A14F-447B-9218-CB34D58B7C2E} = {C97B6424-A14F-447B-9218-CB34D58B7C2E}
 	EndProjectSection
