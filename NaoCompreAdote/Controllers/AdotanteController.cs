@@ -88,7 +88,7 @@ namespace TransactionsAPI.Controllers
         /// <param name="id">Identificação do pet</param>
         /// <returns code="200">adotante</returns>
         /// <returns code="204">login invalido</returns>
-        [HttpGet("adotantesPet/{id}")]
+        [HttpGet("adotantespet/{id}")]
         [ProducesResponseType(typeof(List<AdotanteDto>), 200)]
         public async Task<IActionResult> GetAdotantesByPetIdAsync([FromRoute]Guid id)
         {

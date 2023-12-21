@@ -63,7 +63,7 @@ namespace TransactionsAPI.Controllers
         /// <param name="id">Identificação do doador</param>
         /// <returns code="200">achou</returns>
         /// <returns code="204">invalido</returns>
-        [HttpGet("adotantesPet/{id}")]
+        [HttpGet("adotantespet/{id}")]
         [ProducesResponseType(typeof(PetDto), 200)]
         public async Task<IActionResult> GetPetsByNonFavoriteAsync([FromRoute] Guid id)
         {
