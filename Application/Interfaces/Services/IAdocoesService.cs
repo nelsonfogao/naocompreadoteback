@@ -10,7 +10,7 @@ namespace Application.Interfaces.Services
 {
     public interface IAdocoesService
     {
-        Task CreateAdocaoAsync(CreateAdocaoDto adocao);
+        Task<AdocoesDto> CreateAdocaoAsync(CreateAdocaoDto adocao);
         Task<IEnumerable<AdocoesDto>> GetAdocoesAsync();
     }
 }

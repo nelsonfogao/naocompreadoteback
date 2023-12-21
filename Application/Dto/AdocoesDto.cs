@@ -10,7 +10,5 @@ namespace Application.Dto
     {
         public Guid AdotanteId { get; set; }
         public Guid PetId { get; set; }
-        public AdotanteDto AdotanteDto { get; set; }
-        public PetDto PetDto { get; set; }
     }
 }

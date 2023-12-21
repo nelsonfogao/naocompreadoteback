@@ -25,10 +25,11 @@ namespace Infrastructure.Repositories
             return result;
         }
 
-        public async Task CreateAdocaoAsync(Adocoes adocoes)
+        public async Task<Adocoes> CreateAdocaoAsync(Adocoes adocoes)
         {
             await _context.Adocoes.AddAsync(adocoes);
             _context.SaveChanges();
+            return adocoes;
         }
 
     }

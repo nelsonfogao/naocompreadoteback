@@ -83,9 +83,9 @@ namespace Application.Services
                 CPF = adotante.CPF,
             };
         }
-        public async Task CreateAdocoesAsync(CreateAdocaoDto adocao)
+        public async Task<AdocoesDto> CreateAdocoesAsync(CreateAdocaoDto adocao)
         {
-            await _adocoesService.CreateAdocaoAsync(adocao);
+             return await _adocoesService.CreateAdocaoAsync(adocao);
         }
 
         public async Task<AdotanteDto> LoginAdotanteAsync(string email, string senha)

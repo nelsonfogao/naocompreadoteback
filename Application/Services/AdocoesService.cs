@@ -34,14 +34,18 @@ namespace Application.Services
       
         }
 
-        public async Task CreateAdocaoAsync(CreateAdocaoDto adocao)
+        public async Task<AdocoesDto> CreateAdocaoAsync(CreateAdocaoDto adocao)
         {
-            await _adocoesRepository.CreateAdocaoAsync(new Adocoes()
+            var adocoes = await _adocoesRepository.CreateAdocaoAsync(new Adocoes()
             {
                 AdotanteId = adocao.AdotanteId,
                 PetId = adocao.PetId
             });
-
+            return new AdocoesDto
+            {
+                AdotanteId = adocoes.AdotanteId,
+                PetId = adocoes.PetId
+            };
         }
     }
 }

@@ -65,9 +65,9 @@ namespace TransactionsAPI.Controllers
         [HttpPost("adocao")]
         public async Task<IActionResult> PostAdotanteAsync([FromBody] CreateAdocaoDto adocao)
         {
-            await _adotanteService.CreateAdocoesAsync(adocao);
+            var result = await _adotanteService.CreateAdocoesAsync(adocao);
 
-            return Created("",Ok());
+            return Created("",result);
         }
         /// <summary>
         /// Login adotantes

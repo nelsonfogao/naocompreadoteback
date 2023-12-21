@@ -12,7 +12,7 @@ namespace Application.Interfaces.Services
         Task<IEnumerable<AdotanteDto>> GetAdotantesAsync();
         Task<AdotanteDto> GetAdotanteByIdAsync(Guid id);
         Task<AdotanteDto> CreateAdotanteAsync(CreateAdotanteDto adotante);
-        Task CreateAdocoesAsync(CreateAdocaoDto adocao);
+        Task<AdocoesDto> CreateAdocoesAsync(CreateAdocaoDto adocao);
         Task<AdotanteDto> LoginAdotanteAsync(string email, string senha);
         Task<IEnumerable<AdotanteDto>> GetAdotantesByPetIdAsync(Guid petId);
     }
