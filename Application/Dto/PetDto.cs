@@ -16,8 +16,9 @@ namespace Application.Dto
         public bool EhDog { get; set; }
         public Guid DoadorId { get; set; }
         public bool Disponivel { get; set; }
-        public List<FotosPetsDto> FotosPet { get; set; }
+        public string FotoUrl { get; set; }
         public List<CaracteristicasDto> Caracteristicas { get; set; }
+        public IList<AdocoesDto> Adocoes { get; set; }
 
 
     }

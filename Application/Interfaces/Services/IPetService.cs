@@ -12,5 +12,6 @@ namespace Application.Interfaces.Services
         Task<IEnumerable<PetDto>> GetPetsAsync();
         Task<PetDto> GetPetByIdAsync(Guid id);
         Task<PetDto> CreatePetAsync(CreatePetDto pet, Guid doadorId);
+        Task<PetDto> GetPetsByNonFavoriteAsync(Guid adotanteId);
     }
 }

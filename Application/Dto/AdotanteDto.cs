@@ -16,7 +16,7 @@ namespace Application.Dto
         public string Telefone { get; set; }
         public string Endereco { get; set; }
         public string CPF { get; set; }
-        public  IList<FotosAdotantesDto> FotosAdotantes { get; set; }
+        public string FotoUrl { get; set; }
         public IList<AdocoesDto> Adocoes { get; set; }
 
 

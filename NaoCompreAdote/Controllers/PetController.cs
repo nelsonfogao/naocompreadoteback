@@ -1,5 +1,6 @@
 ﻿using Application.Dto;
 using Application.Interfaces.Services;
+using Application.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -55,6 +56,18 @@ namespace TransactionsAPI.Controllers
             var result = await _petService.CreatePetAsync(pet, id);
 
             return Created("", result);
+        }
+        /// <summary>
+        /// get pets por nao ter sido favoritado pelo doador id
+        /// </summary>
+        /// <param name="id">Identificação do doador</param>
+        /// <returns code="200">achou</returns>
+        /// <returns code="204">invalido</returns>
+        [HttpGet("adotantesPet/{id}")]
+        [ProducesResponseType(typeof(PetDto), 200)]
+        public async Task<IActionResult> GetPetsByNonFavoriteAsync([FromRoute] Guid id)
+        {
+            return Ok(await _petService.GetPetsByNonFavoriteAsync(id));
         }
 
     }

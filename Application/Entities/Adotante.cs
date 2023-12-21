@@ -17,7 +17,7 @@ namespace Application.Entities
         public string Telefone { get; set; }
         public string Endereco { get; set; }
         public string CPF { get; set; }
-        public virtual IList<FotosAdotantes> FotosAdotantes { get; set; }
+        public string FotoUrl { get; set; }
         public virtual IList<Adocoes> Adocoes { get; set; }
 
     }

@@ -62,7 +62,7 @@ namespace TransactionsAPI.Controllers
         /// <param name="adocao">dados para vincular</param>
         /// <response code="201">Cadastrado com sucesso</response>  
         [ProducesResponseType(201)]
-        [HttpPost("/adocao")]
+        [HttpPost("adocao")]
         public async Task<IActionResult> PostAdotanteAsync([FromBody] CreateAdocaoDto adocao)
         {
             await _adotanteService.CreateAdocoesAsync(adocao);
@@ -81,6 +81,18 @@ namespace TransactionsAPI.Controllers
         public async Task<IActionResult> LoginAdotanteAsync([FromBody] LoginDto login)
         {
             return Ok(await _adotanteService.LoginAdotanteAsync(login.Email, login.Senha));
+        }
+        /// <summary>
+        /// get adotantes por pet id
+        /// </summary>
+        /// <param name="id">Identificação do pet</param>
+        /// <returns code="200">adotante</returns>
+        /// <returns code="204">login invalido</returns>
+        [HttpGet("adotantesPet/{id}")]
+        [ProducesResponseType(typeof(List<AdotanteDto>), 200)]
+        public async Task<IActionResult> GetAdotantesByPetIdAsync([FromRoute]Guid id)
+        {
+            return Ok(await _adotanteService.GetAdotantesByPetIdAsync(id));
         }
 
     }

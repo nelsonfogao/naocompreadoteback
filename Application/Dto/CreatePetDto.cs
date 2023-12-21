@@ -11,7 +11,7 @@ namespace Application.Dto
         public string Nome { get; set; }
         public DateTime DataNascimento { get; set; }
         public bool EhDog { get; set; }
-        public List<FotosPetsDto> FotosPet { get; set; }
+        public string FotoUrl { get; set; }
         public List<CaracteristicasDto> Caracteristicas { get; set; }
 
     }

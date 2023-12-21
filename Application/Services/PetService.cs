@@ -17,14 +17,18 @@ namespace Application.Services
     public class PetService : IPetService
     {
         private readonly IPetRepository _petRepository;
-        public PetService(IPetRepository petRepository)
+        private readonly IAdocoesService _adocoesService;
+        public PetService(IPetRepository petRepository, IAdocoesService adocoesService)
         {
             _petRepository = petRepository;
+            _adocoesService = adocoesService;
         }
 
         public async Task<IEnumerable<PetDto>> GetPetsAsync()
         {
             var pets = await _petRepository.GetPetsAsync();
+
+            var adocoes = await _adocoesService.GetAdocoesAsync();
             var petsDto = pets.Select(x => new PetDto()
             {
                     PetId = x.PetId,
@@ -33,23 +37,22 @@ namespace Application.Services
                     EhDog = x.EhDog,
                     DoadorId = x.DoadorId,
                     Disponivel = x.Disponivel,
+                    FotoUrl = x.FotoUrl,
                     Caracteristicas = x.Caracteristicas != null ? x.Caracteristicas.Select(y => new CaracteristicasDto()
                     {
                         IdCaracteristica = y.IdCaracteristica,
                         Nome = y.Nome
                     }).ToList(): new List<CaracteristicasDto> (),
-                    FotosPet = x.FotosPet != null ? x.FotosPet.Select(y => new FotosPetsDto()
-                {
-                    IdFoto = y.IdFoto,
-                    PetId = y.PetId,
-                    Link = y.Link,
-                }).ToList() : new List<FotosPetsDto>(),
+                    
+                Adocoes = x.Adocoes != null ? adocoes.Where(x => x.PetId == x.PetId).ToList() : new List<AdocoesDto>()
             }).ToList();
             return petsDto;
         }
         public async Task<PetDto> GetPetByIdAsync(Guid id)
         {
             var pet = await _petRepository.GetPetByIdAsync(id);
+
+            var adocoes = await _adocoesService.GetAdocoesAsync();
 
             return new PetDto()
             {
@@ -59,17 +62,13 @@ namespace Application.Services
                     EhDog = pet.EhDog,
                     DoadorId = pet.DoadorId,
                     Disponivel = pet.Disponivel,
+                    FotoUrl = pet.FotoUrl,
                     Caracteristicas = pet.Caracteristicas != null ? pet.Caracteristicas.Select(y => new CaracteristicasDto()
                     {
                         IdCaracteristica = y.IdCaracteristica,
                         Nome = y.Nome
                     }).ToList() : new List<CaracteristicasDto>(),
-                    FotosPet = pet.FotosPet != null ? pet.FotosPet.Select(y => new FotosPetsDto()
-                    {
-                        IdFoto = y.IdFoto,
-                        PetId = y.PetId,
-                        Link = y.Link,
-                    }).ToList(): new List<FotosPetsDto>(),
+                    Adocoes = pet.Adocoes != null ? adocoes.Where(x => x.PetId == x.PetId).ToList() : new List<AdocoesDto>()
             };
         }
 
@@ -83,17 +82,12 @@ namespace Application.Services
                 EhDog = createPet.EhDog,
                 DoadorId = doadorId,
                 Disponivel = true,
+                FotoUrl= createPet.FotoUrl,
                 Caracteristicas = createPet.Caracteristicas != null ? createPet.Caracteristicas.Select(y => new Caracteristicas()
                 {
                     IdCaracteristica = y.IdCaracteristica,
                     Nome = y.Nome
                 }).ToList() : new List<Caracteristicas>(),
-                FotosPet = createPet.FotosPet != null ? createPet.FotosPet.Select(y => new FotosPets()
-                {
-                    IdFoto = y.IdFoto,
-                    PetId = y.PetId,
-                    Link = y.Link,
-                }).ToList() : new List<FotosPets> ()
             };
             var petNovo = _petRepository.CreatePetAsync(pet);
             var petDto = new PetDto()
@@ -104,19 +98,31 @@ namespace Application.Services
                 EhDog = pet.EhDog,
                 DoadorId = doadorId,
                 Disponivel = pet.Disponivel,
+                FotoUrl = pet.FotoUrl,
                 Caracteristicas =  pet.Caracteristicas != null ? pet.Caracteristicas.Select(y => new CaracteristicasDto()
                 {
                     IdCaracteristica = y.IdCaracteristica,
                     Nome = y.Nome
                 }).ToList() : new List<CaracteristicasDto>(),
-                FotosPet = createPet!= null ?createPet.FotosPet.Select(y => new FotosPetsDto()
-                {
-                    IdFoto = y.IdFoto,
-                    PetId = y.PetId,
-                    Link = y.Link,
-                }).ToList() : new List<FotosPetsDto> ()
+
             };
             return petDto;
+        }
+        public async Task<PetDto> GetPetsByNonFavoriteAsync(Guid adotanteId)
+        {
+            var random = new Random();
+            var adocoes = await _adocoesService.GetAdocoesAsync();
+            var adocoesPet = adocoes.Where(x => x.AdotanteId == adotanteId);
+            var todosPets = GetPetsAsync().Result.ToList();
+            var pets = new List<PetDto>();
+            if (!adocoesPet.Any())
+                return todosPets.ElementAtOrDefault(random.Next(0, todosPets.Count));
+            foreach (var item in adocoesPet)
+            {
+                pets = todosPets.Where(x => x.PetId != item.PetId).ToList();
+            }
+
+            return pets.ElementAtOrDefault(random.Next(0, pets.Count));
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Infrastructure.Mapping
             builder.Property(x => x.DataNascimento);
             builder.Property(x => x.EhDog);
             builder.Property(x=>x.DoadorId);
-            builder.HasMany<FotosPets>(x => x.FotosPet).WithOne(b=>b.Pet).HasForeignKey(j=>j.IdFoto);
+            builder.Property(x => x.FotoUrl);
             builder.HasMany<Caracteristicas>(x => x.Caracteristicas);
             builder
                 .HasOne<Doador>(a => a.Doador)

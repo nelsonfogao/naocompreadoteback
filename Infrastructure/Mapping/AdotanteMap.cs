@@ -23,7 +23,7 @@ namespace Infrastructure.Mapping
             builder.Property(x => x.Telefone);
             builder.Property(x => x.Email);
             builder.Property(x => x.CPF);
-            builder.HasMany<FotosAdotantes>(x => x.FotosAdotantes).WithOne(j=>j.Adotante).HasForeignKey(j=>j.IdFoto);
+            builder.Property(x => x.FotoUrl);
         }
     }
 }

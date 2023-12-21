@@ -38,13 +38,7 @@ namespace Application.Services
                 Telefone = x.Telefone,
                 Endereco = x.Endereco,
                 CPF = x.CPF,
-                FotosAdotantes = x.FotosAdotantes != null ?
-                x.FotosAdotantes.Select(y => new FotosAdotantesDto()
-                {
-                    IdFoto = y.IdFoto,
-                    AdotanteId = y.AdotanteId,
-                    Link = y.Link,
-                }).ToList() : new List<FotosAdotantesDto>(),
+                FotoUrl = x.FotoUrl,
                 Adocoes = x.Adocoes != null ? adocoes.Where(x=> x.AdotanteId == x.AdotanteId).ToList(): new List<AdocoesDto>(),
             }).ToList();
             return adotantesDto;
@@ -62,13 +56,7 @@ namespace Application.Services
                 Telefone = adotante.Telefone,
                 Endereco = adotante.Endereco,
                 CPF = adotante.CPF,
-                FotosAdotantes = adotante.FotosAdotantes != null ?
-                adotante.FotosAdotantes.Select(y => new FotosAdotantesDto()
-                {
-                    IdFoto = y.IdFoto,
-                    AdotanteId = y.AdotanteId,
-                    Link = y.Link,
-                }).ToList() : new List<FotosAdotantesDto>(),
+                FotoUrl = adotante.FotoUrl, 
                 Adocoes = adotante.Adocoes != null ? adocoes.Where(x => x.AdotanteId == x.AdotanteId).ToList() : new List<AdocoesDto>(),
 
             };
@@ -117,15 +105,22 @@ namespace Application.Services
                 Telefone = login.Telefone,
                 Endereco = login.Endereco,
                 CPF = login.CPF,
-                FotosAdotantes = login.FotosAdotantes != null ?
-                login.FotosAdotantes.Select(y => new FotosAdotantesDto()
-                {
-                    IdFoto = y.IdFoto,
-                    AdotanteId = y.AdotanteId,
-                    Link = y.Link,
-                }).ToList() : new List<FotosAdotantesDto>(),
+                FotoUrl=login.FotoUrl,
                 Adocoes = login.Adocoes != null ? adocoes.Where(x => x.AdotanteId == x.AdotanteId).ToList() : new List<AdocoesDto>(),
             };
+        }
+        public async Task<IEnumerable<AdotanteDto>> GetAdotantesByPetIdAsync(Guid petId)
+        {
+            var adocoes = await _adocoesService.GetAdocoesAsync();
+            var adocoesPet = adocoes.Where(x => x.PetId == petId);
+            if (!adocoesPet.Any())
+                return null;
+            var adotantes =  new List<AdotanteDto>();
+            foreach (var i in adocoesPet)
+            {
+                adotantes.Add( await GetAdotanteByIdAsync(i.AdotanteId));
+            }
+            return adotantes;
         }
     }
 }

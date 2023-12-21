@@ -9,16 +9,19 @@ namespace Application.Services
     {
         private readonly IDoadorRepository _doadorRepository;
         private readonly IPetService _petService;
-        public DoadorService(IDoadorRepository doadorRepository, IPetService petService)
+        private readonly IAdocoesService _adocoesService;
+        public DoadorService(IDoadorRepository doadorRepository, IPetService petService, IAdocoesService adocoesService)
         {
             _doadorRepository = doadorRepository;
             _petService = petService;
+            _adocoesService = adocoesService;
         }
 
         public async Task<IEnumerable<DoadorDto>> GetDoadoresAsync()
         {
             var doadores = await _doadorRepository.GetDoadoresAsync();
             var pets = await _petService.GetPetsAsync();
+            var adocoes = await _adocoesService.GetAdocoesAsync();
             var doadoresDto = doadores.Select(x => new DoadorDto()
             {
                 DoadorId = x.DoadorId,
@@ -36,17 +39,13 @@ namespace Application.Services
                     EhDog = y.EhDog,
                     DoadorId = y.DoadorId,
                     Disponivel = y.Disponivel,
-                    FotosPet = y.FotosPet!= null ? y.FotosPet.Select(y => new FotosPetsDto()
-                    {
-                        IdFoto = y.IdFoto,
-                        PetId = y.PetId,
-                        Link = y.Link,
-                    }).ToList(): new List<FotosPetsDto>(),
+                    FotoUrl = y.FotoUrl,
                     Caracteristicas = y.Caracteristicas != null? y.Caracteristicas.Select(y => new CaracteristicasDto()
                     {
                         IdCaracteristica = y.IdCaracteristica,
                         Nome = y.Nome
                     }).ToList() : new List<CaracteristicasDto>(),
+                    Adocoes = y.Adocoes != null ? adocoes.Where(x => x.PetId == x.PetId).ToList() : new List<AdocoesDto>()
                 }).ToList() : new List<PetDto>()
             }).ToList();
             return doadoresDto;
@@ -55,6 +54,7 @@ namespace Application.Services
         {
             var doador = await _doadorRepository.GetDoadorByIdAsync(id);
 
+            var adocoes = await _adocoesService.GetAdocoesAsync();
             var pets = await _petService.GetPetsAsync();
             var petsUsuario = pets.Where(z => z.DoadorId == doador.DoadorId);
             if (petsUsuario.Count() == 0)
@@ -77,17 +77,13 @@ namespace Application.Services
                     EhDog = y.EhDog,
                     DoadorId = y.DoadorId,
                     Disponivel = y.Disponivel,
+                    FotoUrl = y.FotoUrl,
                     Caracteristicas = y.Caracteristicas != null ? y.Caracteristicas.Select(y => new CaracteristicasDto()
                     {
                         IdCaracteristica = y.IdCaracteristica,
                         Nome = y.Nome
                     }).ToList() : new List<CaracteristicasDto>(),
-                    FotosPet = y.FotosPet != null ? y.FotosPet.Select(y => new FotosPetsDto()
-                    {
-                        IdFoto = y.IdFoto,
-                        PetId = y.PetId,
-                        Link = y.Link,
-                    }).ToList(): new List<FotosPetsDto>(),
+                    Adocoes = y.Adocoes != null ? adocoes.Where(x => x.PetId == x.PetId).ToList() : new List<AdocoesDto>()
                 }).ToList(): new List<PetDto>()
             };
         }
@@ -123,6 +119,8 @@ namespace Application.Services
             if (login.Senha != senha)
                 return null;
             var pets = await _petService.GetPetsAsync();
+
+            var adocoes = await _adocoesService.GetAdocoesAsync();
             var petsUsuario = pets.Where(z => z.DoadorId == login.DoadorId);
             if (petsUsuario.Count() == 0)
                 petsUsuario = new List<PetDto>();
@@ -143,17 +141,13 @@ namespace Application.Services
                     EhDog = y.EhDog,
                     DoadorId = y.DoadorId,
                     Disponivel = y.Disponivel,
+                    FotoUrl = y.FotoUrl,
                     Caracteristicas = y.Caracteristicas != null ? y.Caracteristicas.Select(y => new CaracteristicasDto()
                     {
                         IdCaracteristica = y.IdCaracteristica,
                         Nome = y.Nome
                     }).ToList() : new List<CaracteristicasDto>(),
-                    FotosPet = y.FotosPet != null ? y.FotosPet.Select(y => new FotosPetsDto()
-                    {
-                        IdFoto = y.IdFoto,
-                        PetId = y.PetId,
-                        Link = y.Link,
-                    }).ToList() : new List<FotosPetsDto>(),
+                    Adocoes = y.Adocoes != null ? adocoes.Where(x => x.PetId == x.PetId).ToList() : new List<AdocoesDto>()
                 }).ToList() : new List<PetDto>()
             };
         }
