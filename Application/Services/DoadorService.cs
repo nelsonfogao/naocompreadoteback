@@ -40,11 +40,6 @@ namespace Application.Services
                     DoadorId = y.DoadorId,
                     Disponivel = y.Disponivel,
                     FotoUrl = y.FotoUrl,
-                    Caracteristicas = y.Caracteristicas != null? y.Caracteristicas.Select(y => new CaracteristicasDto()
-                    {
-                        IdCaracteristica = y.IdCaracteristica,
-                        Nome = y.Nome
-                    }).ToList() : new List<CaracteristicasDto>(),
                     Adocoes = y.Adocoes != null ? adocoes.Where(x => x.PetId == x.PetId).ToList() : new List<AdocoesDto>()
                 }).ToList() : new List<PetDto>()
             }).ToList();
@@ -78,11 +73,6 @@ namespace Application.Services
                     DoadorId = y.DoadorId,
                     Disponivel = y.Disponivel,
                     FotoUrl = y.FotoUrl,
-                    Caracteristicas = y.Caracteristicas != null ? y.Caracteristicas.Select(y => new CaracteristicasDto()
-                    {
-                        IdCaracteristica = y.IdCaracteristica,
-                        Nome = y.Nome
-                    }).ToList() : new List<CaracteristicasDto>(),
                     Adocoes = y.Adocoes != null ? adocoes.Where(x => x.PetId == x.PetId).ToList() : new List<AdocoesDto>()
                 }).ToList(): new List<PetDto>()
             };
@@ -142,11 +132,6 @@ namespace Application.Services
                     DoadorId = y.DoadorId,
                     Disponivel = y.Disponivel,
                     FotoUrl = y.FotoUrl,
-                    Caracteristicas = y.Caracteristicas != null ? y.Caracteristicas.Select(y => new CaracteristicasDto()
-                    {
-                        IdCaracteristica = y.IdCaracteristica,
-                        Nome = y.Nome
-                    }).ToList() : new List<CaracteristicasDto>(),
                     Adocoes = y.Adocoes != null ? adocoes.Where(x => x.PetId == x.PetId).ToList() : new List<AdocoesDto>()
                 }).ToList() : new List<PetDto>()
             };

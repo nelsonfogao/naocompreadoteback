@@ -17,8 +17,6 @@ namespace Infrastructure.Data
         public DbSet<Adotante> Adotantes { get; set; }
         public DbSet<Doador> Doadores { get; set; }
         public DbSet<Pet> Pets { get; set; }
-        public DbSet<Caracteristicas> Caracteristicas { get; set; }
-
         public DbSet<Adocoes> Adocoes { get; set; }
 
         public WebApiContext(DbContextOptions<WebApiContext> options) : base(options)

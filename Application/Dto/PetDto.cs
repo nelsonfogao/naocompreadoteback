@@ -17,7 +17,6 @@ namespace Application.Dto
         public Guid DoadorId { get; set; }
         public bool Disponivel { get; set; }
         public string FotoUrl { get; set; }
-        public List<CaracteristicasDto> Caracteristicas { get; set; }
         public IList<AdocoesDto> Adocoes { get; set; }
 
 

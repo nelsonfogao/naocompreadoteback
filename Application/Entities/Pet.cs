@@ -18,7 +18,6 @@ namespace Application.Entities
         public Guid DoadorId { get; set; }
         public bool Disponivel { get; set; }
         public string FotoUrl { get; set; }
-        public virtual IList<Caracteristicas> Caracteristicas { get; set; }
         [JsonIgnore]
         public virtual Doador Doador { get; set; }
 

@@ -12,7 +12,6 @@ namespace Application.Dto
         public DateTime DataNascimento { get; set; }
         public bool EhDog { get; set; }
         public string FotoUrl { get; set; }
-        public List<CaracteristicasDto> Caracteristicas { get; set; }
 
     }
 }

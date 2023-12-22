@@ -38,11 +38,6 @@ namespace Application.Services
                     DoadorId = x.DoadorId,
                     Disponivel = x.Disponivel,
                     FotoUrl = x.FotoUrl,
-                    Caracteristicas = x.Caracteristicas != null ? x.Caracteristicas.Select(y => new CaracteristicasDto()
-                    {
-                        IdCaracteristica = y.IdCaracteristica,
-                        Nome = y.Nome
-                    }).ToList(): new List<CaracteristicasDto> (),
                     
                 Adocoes = x.Adocoes != null ? adocoes.Where(x => x.PetId == x.PetId).ToList() : new List<AdocoesDto>()
             }).ToList();
@@ -63,11 +58,6 @@ namespace Application.Services
                     DoadorId = pet.DoadorId,
                     Disponivel = pet.Disponivel,
                     FotoUrl = pet.FotoUrl,
-                    Caracteristicas = pet.Caracteristicas != null ? pet.Caracteristicas.Select(y => new CaracteristicasDto()
-                    {
-                        IdCaracteristica = y.IdCaracteristica,
-                        Nome = y.Nome
-                    }).ToList() : new List<CaracteristicasDto>(),
                     Adocoes = pet.Adocoes != null ? adocoes.Where(x => x.PetId == x.PetId).ToList() : new List<AdocoesDto>()
             };
         }
@@ -83,11 +73,6 @@ namespace Application.Services
                 DoadorId = doadorId,
                 Disponivel = true,
                 FotoUrl= createPet.FotoUrl,
-                Caracteristicas = createPet.Caracteristicas != null ? createPet.Caracteristicas.Select(y => new Caracteristicas()
-                {
-                    IdCaracteristica = y.IdCaracteristica,
-                    Nome = y.Nome
-                }).ToList() : new List<Caracteristicas>(),
             };
             var petNovo = _petRepository.CreatePetAsync(pet);
             var petDto = new PetDto()
@@ -99,11 +84,6 @@ namespace Application.Services
                 DoadorId = doadorId,
                 Disponivel = pet.Disponivel,
                 FotoUrl = pet.FotoUrl,
-                Caracteristicas =  pet.Caracteristicas != null ? pet.Caracteristicas.Select(y => new CaracteristicasDto()
-                {
-                    IdCaracteristica = y.IdCaracteristica,
-                    Nome = y.Nome
-                }).ToList() : new List<CaracteristicasDto>(),
 
             };
             return petDto;
