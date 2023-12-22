@@ -73,6 +73,7 @@ namespace Application.Services
                 Telefone = adotante.Telefone,
                 Endereco = adotante.Endereco,
                 CPF = adotante.CPF,
+                FotoUrl= adotante.FotoUrl,
             });
             return new AdotanteDto()
             {
@@ -81,6 +82,7 @@ namespace Application.Services
                 Email = adotante.Email,
                 Endereco = adotante.Endereco,
                 CPF = adotante.CPF,
+                FotoUrl = adotante.FotoUrl,
             };
         }
         public async Task<AdocoesDto> CreateAdocoesAsync(CreateAdocaoDto adocao)
